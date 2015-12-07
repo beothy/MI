@@ -22,6 +22,7 @@ public class Frame extends javax.swing.JFrame {
      */
     public Frame() {
     	this.setPreferredSize(new Dimension(550,350));
+    	this.setTitle("MI: K-Mean clustering");
         initComponents();
     }
 
