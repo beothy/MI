@@ -6,6 +6,12 @@ package mi;
  */
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 /**
  *
@@ -68,10 +74,22 @@ public class Frame extends javax.swing.JFrame {
         });
 
         jButton1.setText("browse");
+        jButton1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+				fileChooser.showDialog(new JFrame(""), null);
+				jTextField1.setText(fileChooser.getSelectedFile().getAbsolutePath());
+			}
+        
+        });
 
         jLabel2.setText("Number of Calsters");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "random", "random from db", "other4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "random", "random from db"}));
 
         jLabel3.setText("Initial Vector");
 
@@ -81,7 +99,7 @@ public class Frame extends javax.swing.JFrame {
 
         jLabel5.setText("Stop Condition");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dont changed", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("Auto Run");
 
@@ -216,7 +234,11 @@ public class Frame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        Modell m = new Kmean();
+        m.loadFile("G:/Egyetem/5. félév/MI/__2xGeometriai_alakzatok_csoportositasa_BISECT_/MI_data6b.txt");
+        for(int i = 0;i<m.getList().get(0).items.size();i++){
+        	System.out.println(m.getList().get(0).items.get(i).getHeight());
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

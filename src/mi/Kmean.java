@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kmean implements Modell {
-	public ArrayList<Item> items = new ArrayList<Item>(); 
+	public ArrayList<Cluster> clusters = new ArrayList<Cluster>(); 
 
 	@SuppressWarnings("unused")
 	@Override
 	public void kmean() {
 		// TODO Auto-generated method stub
-		List<Cluster> clusters = null;
+
 	}
 	
 
@@ -33,6 +33,7 @@ public class Kmean implements Modell {
 	@Override
 	public boolean loadFile(String path) {
 		// TODO Auto-generated method stub
+		clusters.add(new Cluster());
 			try {
 				BufferedReader br = new BufferedReader(new FileReader(path));
 				String line = br.readLine();
@@ -49,7 +50,7 @@ public class Kmean implements Modell {
 					item.setShapeFactor(Double.parseDouble(params[5]));
 					item.setAreaLoadFactor(Double.parseDouble(params[6]));
 					
-					items.add(item);
+					clusters.get(0).items.add(item);
 					
 					line = br.readLine();
 				}
@@ -68,15 +69,12 @@ public class Kmean implements Modell {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
-	public String toString() {
-		return "Kmean [items=" + items + "]";
-	}
+
 
 	@Override
-	public ArrayList<Item> getList() {
+	public ArrayList<Cluster> getList() {
 		// TODO Auto-generated method stub
-		return items;
+		return clusters;
 	}
 
 }
