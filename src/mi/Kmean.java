@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Kmean implements Modell {
+	//Array of clusters
 	public ArrayList<Cluster> clusters = new ArrayList<Cluster>(); 
 
 	//standard k-mean algorithm
