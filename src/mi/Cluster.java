@@ -3,5 +3,5 @@ package mi;
 import java.util.ArrayList;
 
 public class Cluster {
-	public ArrayList<Item> items = new ArrayList<Item>(); 
+	public ArrayList<Item> items = new ArrayList<Item>(); // elemek listaja
 }
