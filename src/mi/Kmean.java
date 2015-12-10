@@ -18,17 +18,6 @@ public class Kmean implements Modell {
 	}
 	
 
-	@Override
-	public void step() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean loadFile(String path) {
@@ -79,6 +68,22 @@ public class Kmean implements Modell {
 	public ArrayList<Cluster> getList() {
 		// TODO Auto-generated method stub
 		return clusters;
+	}
+
+
+
+	@Override
+	public void step(int k, int vector, int metric) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void run(int k, int vector, int metric) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
