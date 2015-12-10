@@ -12,6 +12,9 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -26,9 +29,15 @@ public class Frame extends javax.swing.JFrame {
 	/**
      * Creates new form Frame
      */
+	
+	//Modell (Kmean)
+	private Modell modell;
+	
     public Frame() {
-    	this.setPreferredSize(new Dimension(550,350));
+    	this.setPreferredSize(new Dimension(1000,650));
     	this.setTitle("MI: K-Mean clustering");
+    	
+    	setModell(new Kmean());
         initComponents();
     }
 
@@ -41,21 +50,25 @@ public class Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jSpinner2 = new javax.swing.JSpinner();
+        
+        SpinnerModel spinnerModel =
+                new SpinnerNumberModel(2, //initial value
+                   0, //min
+                   100, //max
+                   1);//step
+        jSpinner2 = new javax.swing.JSpinner(spinnerModel);
+        
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -64,7 +77,7 @@ public class Frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(230);
+        jSplitPane1.setDividerLocation(250);
 
         jTextField1.setText("file path");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +103,8 @@ public class Frame extends javax.swing.JFrame {
         jLabel2.setText("Number of Calsters");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "random", "random from db"}));
+        jComboBox1.setPreferredSize(new Dimension(100,28));
+        jComboBox1.setSize(150, 28);
 
         jLabel3.setText("Initial Vector");
 
@@ -97,13 +112,46 @@ public class Frame extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Euclid", "Cosinus" }));
 
-        jLabel5.setText("Stop Condition");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dont changed", "Item 2", "Item 3", "Item 4" }));
-
+        //Auto Run Button
         jButton3.setText("Auto Run");
+        jButton3.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(modell.loadFile(jTextField1.getText())){
+					System.out.println("Opening File succesful");
+				} else {
+					System.out.println("Opening File failed ");
+					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				int k = (Integer) jSpinner2.getValue();
+				int vector = jComboBox1.getSelectedIndex();
+				int metric = jComboBox2.getSelectedIndex();
+			}
+        	
+        });
+
+        //Single Step button
         jButton4.setText("Single Step");
+        jButton4.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(modell.loadFile(jTextField1.getText())){
+					System.out.println("Opening File succesful");
+				} else {
+					System.out.println("Opening File failed ");
+					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				int k = (Integer) jSpinner2.getValue();
+				int vector = jComboBox1.getSelectedIndex();
+				int metric = jComboBox2.getSelectedIndex();
+			}
+        	
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,14 +166,14 @@ public class Frame extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                           )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            ))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,8 +201,9 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                		.addComponent(jButton3)
+                        .addComponent(jButton4)
+                    )
                 .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -204,7 +253,15 @@ public class Frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    public Modell getModell() {
+		return modell;
+	}
+
+	public void setModell(Modell modell) {
+		this.modell = modell;
+	}
+
+	private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -234,11 +291,11 @@ public class Frame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Modell m = new Kmean();
+        /*Modell m = new Kmean();
         m.loadFile("G:/Egyetem/5. félév/MI/__2xGeometriai_alakzatok_csoportositasa_BISECT_/MI_data6b.txt");
         for(int i = 0;i<m.getList().get(0).items.size();i++){
         	System.out.println(m.getList().get(0).items.get(i).getHeight());
-        }
+        }*/
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -253,16 +310,13 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
