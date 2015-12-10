@@ -5,15 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Kmean implements Modell {
 	public ArrayList<Item> items = new ArrayList<Item>(); 
 
+	@SuppressWarnings("unused")
 	@Override
 	public void kmean() {
 		// TODO Auto-generated method stub
-		
+		List<Cluster> clusters = null;
 	}
+	
 
 	@Override
 	public void step() {
