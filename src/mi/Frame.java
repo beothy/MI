@@ -134,15 +134,16 @@ public class Frame extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if(modell.loadFile(jTextField1.getText())){
-					System.out.println("Opening File succesful");
+					log("Opening File succesful");
 				} else {
-					System.out.println("Opening File failed ");
+					log("Opening File failed ");
 					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
 				}
 				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
-				log("Parameter of Algoritm\nNumber of Clusters: "+k+"\nInitial Vector: "+jComboBox1.getSelectedItem().toString()+"\nMetric: "+jComboBox2.getSelectedItem().toString());
+				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
 				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
@@ -157,15 +158,16 @@ public class Frame extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if(modell.loadFile(jTextField1.getText())){
-					System.out.println("Opening File succesful");
+					log("Opening File succesful");
 				} else {
-					System.out.println("Opening File failed ");
+					log("Opening File failed ");
 					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
 				}
 				int k = (Integer) jSpinner2.getValue();
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
-				log("Parameter of Algorithm\n__Number of Clusters: "+k+"\n__Initial Vector: "+jComboBox1.getSelectedItem().toString()+"\n__Metric: "+jComboBox2.getSelectedItem().toString());
+				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
 				
 				modell.step(k, vector, metric);
 			}
