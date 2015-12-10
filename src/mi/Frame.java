@@ -126,9 +126,10 @@ public class Frame extends javax.swing.JFrame {
 					System.out.println("Opening File failed ");
 					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				int k = (Integer) jSpinner2.getValue();
+				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
+				modell.run(k, vector, metric);
 			}
         	
         });
@@ -149,6 +150,7 @@ public class Frame extends javax.swing.JFrame {
 				int k = (Integer) jSpinner2.getValue();
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
+				modell.step(k, vector, metric);
 			}
         	
         });

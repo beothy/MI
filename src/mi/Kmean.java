@@ -5,19 +5,34 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Kmean implements Modell {
 	public ArrayList<Cluster> clusters = new ArrayList<Cluster>(); 
 
-	@SuppressWarnings("unused")
-	@Override
-	public void kmean() {
+	//standard k-mean algorithm
+	public void kmean(int k, int vector, int metric) {
 		// TODO Auto-generated method stub
 
 	}
+	//bisect kmean algorithm
+	public void bisect(int k, int vector, int metric){
+		
+	}
 	
+	//execute one step of kmean
+	@Override
+	public void step(int k, int vector, int metric) {
+		// TODO Auto-generated method stub
+		
+	}
 
+
+	//execute the full algorithm
+	@Override
+	public void run(int k, int vector, int metric) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public boolean loadFile(String path) {
@@ -68,22 +83,6 @@ public class Kmean implements Modell {
 	public ArrayList<Cluster> getList() {
 		// TODO Auto-generated method stub
 		return clusters;
-	}
-
-
-
-	@Override
-	public void step(int k, int vector, int metric) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void run(int k, int vector, int metric) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
