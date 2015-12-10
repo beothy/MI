@@ -36,10 +36,17 @@ public class Frame extends javax.swing.JFrame {
 	private Modell modell;
 	private String log;
 	
+	//log new line
+	public void log(String l){
+		log += l+"\n";
+		jTextArea1.setText(log);
+	}
+	
     public Frame() {
     	this.setPreferredSize(new Dimension(1000,650));
     	this.setTitle("MI: K-Mean clustering");
     	
+    	log = "";
     	setModell(new Kmean());
         initComponents();
     }
@@ -101,6 +108,7 @@ public class Frame extends javax.swing.JFrame {
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				fileChooser.showDialog(new JFrame(""), null);
 				jTextField1.setText(fileChooser.getSelectedFile().getAbsolutePath());
+				log("Selected file:\n"+jTextField1.getText());
 			}
         
         });
@@ -134,6 +142,7 @@ public class Frame extends javax.swing.JFrame {
 				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
+				log("Parameter of Algoritm\nNumber of Clusters: "+k+"\nInitial Vector: "+jComboBox1.getSelectedItem().toString()+"\nMetric: "+jComboBox2.getSelectedItem().toString());
 				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
@@ -156,6 +165,8 @@ public class Frame extends javax.swing.JFrame {
 				int k = (Integer) jSpinner2.getValue();
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
+				log("Parameter of Algorithm\n__Number of Clusters: "+k+"\n__Initial Vector: "+jComboBox1.getSelectedItem().toString()+"\n__Metric: "+jComboBox2.getSelectedItem().toString());
+				
 				modell.step(k, vector, metric);
 			}
         	
