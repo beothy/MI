@@ -129,6 +129,7 @@ public class Frame extends javax.swing.JFrame {
 				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
+				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
         	
