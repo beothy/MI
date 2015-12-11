@@ -6,6 +6,8 @@ package mi;
  */
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -144,6 +146,7 @@ public class Frame extends javax.swing.JFrame {
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
+				view.draw();
 				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
@@ -319,6 +322,7 @@ public class Frame extends javax.swing.JFrame {
         for(int i = 0;i<m.getList().get(0).items.size();i++){
         	System.out.println(m.getList().get(0).items.get(i).getHeight());
         }*/
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
