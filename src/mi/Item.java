@@ -90,7 +90,7 @@ public class Item {
 		this.areaLoadFactor = areaLoadFactor;
 	}
 	
-	protected static double euklid_distance(Item i, Item centroid)
+	protected double euklid_distance(Item i, Item centroid)
 	{
 		return Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
 				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
@@ -100,7 +100,7 @@ public class Item {
 				+Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2));
 	}
 	
-	protected static double cos_distance(Item i, Item centroid)
+	protected double cos_distance(Item i, Item centroid)
 	{
 		return (i.getArea()*centroid.getArea()
 				+ i.getHeight()*centroid.getHeight()

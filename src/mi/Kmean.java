@@ -14,9 +14,13 @@ public class Kmean implements Modell {
 	//standard k-mean algorithm
 	public void kmean(int k, int vector, int metric) 
 	{
-		int clust_num = k;
+		if(k<2)
+			new Exception("Warning! The value of k is incorrect.");
 		
-
+		/*while()
+		{
+			
+		}*/
 	}
 	//bisect kmean algorithm
 	public void bisect(int k, int vector, int metric){
@@ -38,6 +42,26 @@ public class Kmean implements Modell {
 		
 	}
 
+	public int getClustertoItem( Item i, int metric)
+	{
+		int index = -5;
+		double minDist = Double.MAX_VALUE;
+		double dist = 0;
+		for(int j = 0; j < clusters.get(0).items.size(); j++)
+		{
+			if(metric == 1)
+				dist = i.cos_distance(i, clusters.get(j).getCentroid());
+			if(metric == 0)
+				dist = i.euklid_distance(i, clusters.get(j).getCentroid());
+			if(dist < minDist)	
+			{
+				minDist = dist;
+				index = j;
+			}
+		}
+		return index;
+	}
+	
 	@Override
 	public boolean loadFile(String path) {
 		// TODO Auto-generated method stub
