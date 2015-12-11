@@ -97,4 +97,29 @@ public class Item {
 				+Math.pow(i.getShapeFactor()-centroid.getShapeFactor(), 2)
 				+Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2));
 	}
+	
+	protected static Item createRandCentroid(double wMin, double wMax, double hMin, double hMax, double aMin, double aMax, double pMin, double pMax, double sfMin, double sfMax, double alfMin, double alfMax)
+	{
+		Item RandomCentroid = new Item();
+		double wR = Math.random()*wMax + wMin;
+		double hR = Math.random()*hMax + hMin;
+		double aR = Math.random()*aMax + aMin;
+		double pR = Math.random()*pMax + pMin;
+		double sfR = Math.random()*sfMax + sfMin;
+		double alfR = Math.random()*alfMax + alfMin;
+		RandomCentroid.setWidth(wR);
+		RandomCentroid.setHeight(hR);
+		RandomCentroid.setArea(aR);
+		RandomCentroid.setPerimeter(pR);
+		RandomCentroid.setShapeFactor(sfR);
+		RandomCentroid.setAreaLoadFactor(alfR);
+		return RandomCentroid;
+	}
+	
+	protected static Item createRandCentfromData()
+	{
+		Item RandCentfromData;
+		return RandCentfromData;
+	}
+	
 }
