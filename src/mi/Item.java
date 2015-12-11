@@ -3,6 +3,8 @@
  */
 package mi;
 
+import java.util.ArrayList;
+
 /**
  * @author Bence
  *
@@ -116,9 +118,13 @@ public class Item {
 		return RandomCentroid;
 	}
 	
-	protected static Item createRandCentfromData()
+	protected static Item createRandCentfromData(ArrayList<Cluster> c)
 	{
-		Item RandCentfromData;
+		Item RandCentfromData = new Item();
+		int max = c.size();
+		int min = 1;
+		int R = (int)Math.random()*max + min;
+		RandCentfromData = c.get(R);
 		return RandCentfromData;
 	}
 	
