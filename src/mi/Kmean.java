@@ -32,8 +32,8 @@ public class Kmean implements Modell {
 				c.setCentroid(c.createRandCentroid(minmax));
 				break;
 			case 1:
-				tmp.setCentroid(c.createRandCentfromData(c));
-				c.setCentroid(c.createRandCentfromData(c));
+				tmp.setCentroid(c.createRandCentfromData());
+				c.setCentroid(c.createRandCentfromData());
 				break;
 			}
 			
@@ -49,6 +49,9 @@ public class Kmean implements Modell {
 					if(index!=i){
 						newClusters.get(index).items.add(newClusters.get(i).items.get(j));
 						newClusters.get(i).items.remove(newClusters.get(i).items.get(j));
+						finish = false;
+					} else {
+						finish = true;
 					}
 				}
 			
@@ -63,10 +66,10 @@ public class Kmean implements Modell {
 					dist = newClusters.get(l).centroid.cos_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
 					break;
 				}
-				if(dist < 10)
-					finish = true;
-				else
-					finish = false;
+				//if(dist < 0.01)
+				//	finish = true;
+				//else
+				//	finish = false;
 			}
 		}
 		clusters.addAll(newClusters);

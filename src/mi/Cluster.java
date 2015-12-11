@@ -89,13 +89,14 @@ public class Cluster {
 		return RandomCentroid;
 	}
 	
-	public Item createRandCentfromData(Cluster c) //konretan egy klasztert kap
+	public Item createRandCentfromData() //konretan egy klasztert kap
 	{
 		Item RandCentfromData = new Item();
-		int max = c.items.size(); //az itemek saáma az erdekes
-		int min = 1;
-		int R = (int)Math.random()*max + min;
-		RandCentfromData = c.items.get(R);
+		int max = this.items.size(); //az itemek saáma az erdekes
+		int min = 0;
+		int R = (int) (Math.random()*max + min);
+		System.out.println("\nRandom from data"+R);
+		RandCentfromData = this.items.get(R);
 		return RandCentfromData;
 	}
 	

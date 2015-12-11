@@ -101,20 +101,26 @@ public class Item {
 	}
 	
 	public double cos_distance(Item i, Item centroid)
-	{
-		return (i.getArea()*centroid.getArea()
-				+ i.getHeight()*centroid.getHeight()
-				+ i.getArea()*centroid.getArea()
-				+ i.getPerimeter()*centroid.getPerimeter()
-				+ i.getShapeFactor()*centroid.getShapeFactor()
-				+ i.getAreaLoadFactor()*centroid.getAreaLoadFactor())
-				/(Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
-				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
-				+ Math.pow(i.getArea()-centroid.getArea(),2)
-				+ Math.pow(i.getPerimeter()-centroid.getPerimeter(), 2)
-				+ Math.pow(i.getShapeFactor()-centroid.getShapeFactor(), 2)
-				+ Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2)));
-	}
+    {
+            return (i.getArea()*centroid.getArea()
+                            + i.getHeight()*centroid.getHeight()
+                            + i.getArea()*centroid.getArea()
+                            + i.getPerimeter()*centroid.getPerimeter()
+                            + i.getShapeFactor()*centroid.getShapeFactor()
+                            + i.getAreaLoadFactor()*centroid.getAreaLoadFactor())
+                            /(Math.sqrt((i.getWidth()*i.getWidth())
+                            + i.getHeight()*i.getHeight()
+                            + i.getArea()*i.getArea()
+                            + i.getPerimeter()*i.getPerimeter()
+                            + i.getShapeFactor()*i.getShapeFactor()
+                            + i.getAreaLoadFactor()*i.getAreaLoadFactor())
+                                            * Math.sqrt((i.getWidth()*i.getWidth())
+                                                            + centroid.getHeight()*centroid.getHeight()
+                                                            + centroid.getArea()*centroid.getArea()
+                                                            + centroid.getPerimeter()*centroid.getPerimeter()
+                                                            + centroid.getShapeFactor()*centroid.getShapeFactor()
+                                                            + centroid.getAreaLoadFactor()*centroid.getAreaLoadFactor()));
+    }
 	
 	
 	
