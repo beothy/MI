@@ -18,10 +18,12 @@ public class Diagram extends View{
 	private volatile boolean draw = false;
 	private int numOfCL;
 	private ArrayList<Cluster> clusters;
+	private ArrayList<Double> minmax;
 	
 	Diagram() {
 		numOfCL=1;
 		clusters = null;
+		minmax = null;
 	}
 	
 	 @Override
@@ -48,7 +50,13 @@ public class Diagram extends View{
 			    g2d.setPaint(c);
 			    
 			   for(int j = 0; j< clusters.get(i).items.size();j++){
-				   g2d.drawLine(15+100, 200, 15+200, 315);
+				   Item item = clusters.get(i).items.get(j);
+				   g2d.drawLine(15+100, (int)(515-item.getWidth()*500/minmax.get(1)), 15+200, (int)(515-item.getHeight()*500/minmax.get(3)));
+				   g2d.drawLine(15+200, (int)(515-item.getHeight()*500/minmax.get(3)), 15+300, (int)(515-item.getArea()*500/minmax.get(5)));
+				   g2d.drawLine(15+300, (int)(515-item.getArea()*500/minmax.get(5)), 15+400, (int)(515-item.getPerimeter()*500/minmax.get(7)));
+				   g2d.drawLine(15+400, (int)(515-item.getPerimeter()*500/minmax.get(7)), 15+500, (int)(515-item.getShapeFactor()*500/minmax.get(9)));
+				   g2d.drawLine(15+500, (int)(515-item.getShapeFactor()*500/minmax.get(9)), 15+600, (int)(515-item.getAreaLoadFactor()*500/minmax.get(11)));
+				  
 			   }
 		 }
 		 	
@@ -87,8 +95,9 @@ public class Diagram extends View{
 		 this.repaint();
 	 }
 	 
-	 public void draw(int k,ArrayList<Cluster> clstr) {
+	 public void draw(int k,ArrayList<Cluster> clstr,ArrayList<Double> minimax) {
 		 clusters = clstr;
+		 minmax = minimax;
 		 draw = true;
 		 numOfCL = k;
 		 this.repaint();

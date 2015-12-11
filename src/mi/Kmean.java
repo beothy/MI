@@ -1,10 +1,10 @@
 package mi;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class Kmean implements Modell {
 	//Array of clusters
@@ -14,6 +14,7 @@ public class Kmean implements Modell {
 	//standard k-mean algorithm
 	public void kmean(int k, int vector, int metric) 
 	{
+		//Mivel a kis számláló bigyó csak 1tõl enged, lehetne, hogy 1-nél nem csinál semmit, mert mr úgyis 1 klaszter van
 		if(k<2)
 			new Exception("Warning! The value of k is incorrect.");
 		
@@ -138,7 +139,7 @@ public class Kmean implements Modell {
 				}
 				br.close();		
 					
-			} catch (FileNotFoundException e) {
+			} /*catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return false;
@@ -146,7 +147,10 @@ public class Kmean implements Modell {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return false;
-			} finally {
+			}*/ catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+			}finally {
+			
 				for(double i : minmax)
 					System.out.println(i);
 			}
@@ -162,6 +166,11 @@ public class Kmean implements Modell {
 	public ArrayList<Cluster> getList() {
 		// TODO Auto-generated method stub
 		return clusters;
+	}
+	@Override
+	public ArrayList<Double> getminmax() {
+		// TODO Auto-generated method stub
+		return minmax;
 	}
 
 }

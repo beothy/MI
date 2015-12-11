@@ -71,7 +71,7 @@ public class Frame extends javax.swing.JFrame {
         
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(2, //initial value
-                   0, //min
+                   1, //min
                    100, //max
                    1);//step
         jSpinner2 = new javax.swing.JSpinner(spinnerModel);
@@ -146,7 +146,7 @@ public class Frame extends javax.swing.JFrame {
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
-				view.draw(k,modell.getList());
+				view.draw(k,modell.getList(),modell.getminmax());
 				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
