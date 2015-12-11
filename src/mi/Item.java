@@ -90,7 +90,7 @@ public class Item {
 		this.areaLoadFactor = areaLoadFactor;
 	}
 	
-	protected static double distance(Item i, Item centroid)
+	protected static double euklid_distance(Item i, Item centroid)
 	{
 		return Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
 				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
@@ -98,6 +98,22 @@ public class Item {
 				+ Math.pow(i.getPerimeter()-centroid.getPerimeter(), 2)
 				+Math.pow(i.getShapeFactor()-centroid.getShapeFactor(), 2)
 				+Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2));
+	}
+	
+	protected static double cos_distance(Item i, Item centroid)
+	{
+		return (i.getArea()*centroid.getArea()
+				+ i.getHeight()*centroid.getHeight()
+				+ i.getArea()*centroid.getArea()
+				+ i.getPerimeter()*centroid.getPerimeter()
+				+ i.getShapeFactor()*centroid.getShapeFactor()
+				+ i.getAreaLoadFactor()*centroid.getAreaLoadFactor())
+				/(Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
+				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
+				+ Math.pow(i.getArea()-centroid.getArea(),2)
+				+ Math.pow(i.getPerimeter()-centroid.getPerimeter(), 2)
+				+ Math.pow(i.getShapeFactor()-centroid.getShapeFactor(), 2)
+				+ Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2)));
 	}
 	
 	protected static Item createRandCentroid(double wMin, double wMax, double hMin, double hMax, double aMin, double aMax, double pMin, double pMax, double sfMin, double sfMax, double alfMin, double alfMax)
