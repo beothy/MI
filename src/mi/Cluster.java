@@ -12,6 +12,8 @@ public class Cluster {
 		this.centroid = null;
 	}
 	
+	
+	
 	public Item getCentroid()
 	{
 		return centroid;
