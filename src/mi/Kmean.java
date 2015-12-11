@@ -15,8 +15,16 @@ public class Kmean implements Modell {
 	public void kmean(int k, int vector, int metric) 
 	{
 		//Mivel a kis számláló bigyó csak 1tõl enged, lehetne, hogy 1-nél nem csinál semmit, mert mr úgyis 1 klaszter van
-		if(k<2)
+		if(k<1)
 			new Exception("Warning! The value of k is incorrect.");
+		else if(k==1)
+			return;
+		
+		
+		ArrayList<Cluster> newClusters = new ArrayList<Cluster>();
+		for(int i = 0;i<k-1;i++){
+			
+		}
 		
 		/*while()
 		{
@@ -48,6 +56,7 @@ public class Kmean implements Modell {
 		int index = -5;
 		double minDist = Double.MAX_VALUE;
 		double dist = 0;
+		//ez it tkérdéses
 		for(int j = 0; j < clusters.get(0).items.size(); j++)
 		{
 			if(metric == 1)
