@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 
 public class Diagram extends View{
@@ -16,9 +17,11 @@ public class Diagram extends View{
 	private volatile boolean init = true;
 	private volatile boolean draw = false;
 	private int numOfCL;
+	private ArrayList<Cluster> clusters;
 	
 	Diagram() {
 		numOfCL=1;
+		clusters = null;
 	}
 	
 	 @Override
@@ -36,6 +39,18 @@ public class Diagram extends View{
 	 
 	 public void draw(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g.create();
+		 
+		 for(int i=0;i<clusters.size();i++){
+			 	float hue = i/clusters.size();
+			    float saturation = 1.0f;
+			    float brightness = 1.0f;
+			    Color c = Color.getHSBColor(hue,saturation,brightness);
+			    g2d.setPaint(c);
+			    
+			   for(int j = 0; j< clusters.get(i).items.size();j++){
+				   g2d.drawLine(15+100, 200, 15+200, 315);
+			   }
+		 }
 		 	
 	 }
 	 
@@ -63,7 +78,6 @@ public class Diagram extends View{
 
 			    g2d.setPaint(c);
 			    g2d.fill(new Rectangle2D.Double((i/(360/(double)numOfCL))*30, 550, 30, 10));
-			    System.out.println(hue);
 		}
 		
 	 }
@@ -73,7 +87,8 @@ public class Diagram extends View{
 		 this.repaint();
 	 }
 	 
-	 public void draw(int k) {
+	 public void draw(int k,ArrayList<Cluster> clstr) {
+		 clusters = clstr;
 		 draw = true;
 		 numOfCL = k;
 		 this.repaint();
