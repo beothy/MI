@@ -78,11 +78,35 @@ public class Kmean implements Modell {
 					
 					item = new Item();
 					item.setWidth(Double.parseDouble(params[1]));
+					if(item.getWidth()<minmax.get(0))
+						minmax.set(0, item.getWidth());
+					else if(item.getWidth()>minmax.get(1))
+						minmax.set(1, item.getWidth());
 					item.setHeight(Double.parseDouble(params[2]));
+					if(item.getHeight()<minmax.get(2))
+						minmax.set(2, item.getHeight());
+					else if(item.getHeight()>minmax.get(3))
+						minmax.set(3, item.getHeight());
 					item.setArea(Double.parseDouble(params[3]));
+					if(item.getArea()<minmax.get(4))
+						minmax.set(4, item.getArea());
+					else if(item.getArea()>minmax.get(5))
+						minmax.set(5, item.getArea());
 					item.setPerimeter(Double.parseDouble(params[4]));
+					if(item.getPerimeter()<minmax.get(6))
+						minmax.set(6, item.getPerimeter());
+					else if(item.getPerimeter()>minmax.get(7))
+						minmax.set(7, item.getPerimeter());
 					item.setShapeFactor(Double.parseDouble(params[5]));
+					if(item.getShapeFactor()<minmax.get(8))
+						minmax.set(8, item.getShapeFactor());
+					else if(item.getShapeFactor()>minmax.get(9))
+						minmax.set(9, item.getShapeFactor());
 					item.setAreaLoadFactor(Double.parseDouble(params[6]));
+					if(item.getAreaLoadFactor()<minmax.get(10))
+						minmax.set(10, item.getAreaLoadFactor());
+					else if(item.getAreaLoadFactor()>minmax.get(11))
+						minmax.set(11, item.getAreaLoadFactor());
 					
 					clusters.get(0).items.add(item);
 					
@@ -99,7 +123,8 @@ public class Kmean implements Modell {
 				e.printStackTrace();
 				return false;
 			} finally {
-				
+				for(double i : minmax)
+					System.out.println(i);
 			}
 		return true;
 	}
