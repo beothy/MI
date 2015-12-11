@@ -146,9 +146,14 @@ public class Frame extends javax.swing.JFrame {
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
-				view.draw(k,modell.getList(),modell.getminmax());
 				//algoritmus lefuttatása
+				//view.draw(k, modell.getList(), modell.getminmax());
+				log(Integer.toString(modell.getList().get(0).items.size())+"\n");
 				modell.run(k, vector, metric);
+				view.draw(k, modell.getList(), modell.getminmax());
+				log(Integer.toString(modell.getList().size())+"\n");
+				for(Cluster c : modell.getList())
+					log(Integer.toString(c.items.size()));
 			}
         	
         });

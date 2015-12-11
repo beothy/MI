@@ -40,10 +40,36 @@ public class Kmean implements Modell {
 			newClusters.add(tmp);
 		}
 		
-		/*while()
-		{
+		boolean finish = false;
+		
+		while(!finish){
+			for(int i=0;i<newClusters.size();i++)
+				for(int j=0;j<newClusters.get(i).items.size();j++){
+					int index = this.getClustertoItem(newClusters.get(i).items.get(j), metric, newClusters);
+					if(index!=i){
+						newClusters.get(index).items.add(newClusters.get(i).items.get(j));
+						newClusters.get(i).items.remove(newClusters.get(i).items.get(j));
+					}
+				}
 			
-		}*/
+			for(int l=0;l<newClusters.size();l++){
+				newClusters.get(l).setCentroid(newClusters.get(l).calcNewCentroid());
+				double dist = 0;
+				switch(metric){
+				case 0:
+					dist = newClusters.get(l).centroid.euklid_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
+					break;
+				case 1:
+					dist = newClusters.get(l).centroid.cos_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
+					break;
+				}
+				if(dist == 0)
+					finish = true;
+				else
+					finish = false;
+			}
+		}
+		clusters.addAll(newClusters);
 	}
 	//bisect kmean algorithm
 	public void bisect(int k, int vector, int metric){
@@ -62,16 +88,16 @@ public class Kmean implements Modell {
 	@Override
 	public void run(int k, int vector, int metric) {
 		// TODO Auto-generated method stub
-		
+		this.kmean(k, vector, metric, clusters.get(0));
 	}
 
-	public int getClustertoItem( Item i, int metric)
+	public int getClustertoItem( Item i, int metric, ArrayList<Cluster> clusters)
 	{
 		int index = -5;
 		double minDist = Double.MAX_VALUE;
 		double dist = 0;
 		//ez it tkérdéses
-		for(int j = 0; j < clusters.get(0).items.size(); j++)
+		for(int j = 0; j < clusters.size(); j++)
 		{
 			if(metric == 1)
 				dist = i.cos_distance(i, clusters.get(j).getCentroid());
