@@ -95,7 +95,6 @@ public class Cluster {
 		int max = this.items.size(); //az itemek saáma az erdekes
 		int min = 0;
 		int R = (int) (Math.random()*max + min);
-		System.out.println("\nRandom from data"+R);
 		RandCentfromData = this.items.get(R);
 		return RandCentfromData;
 	}

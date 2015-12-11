@@ -57,33 +57,43 @@ public class Kmean implements Modell {
 			
 			for(int l=0;l<newClusters.size();l++){
 				newClusters.get(l).setCentroid(newClusters.get(l).calcNewCentroid());
-				double dist = 0;
-				switch(metric){
-				case 0:
-					dist = newClusters.get(l).centroid.euklid_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
-					break;
-				case 1:
-					dist = newClusters.get(l).centroid.cos_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
-					break;
-				}
-				//if(dist < 0.01)
-				//	finish = true;
-				//else
-				//	finish = false;
 			}
 		}
 		clusters.addAll(newClusters);
 	}
 	//bisect kmean algorithm
 	public void bisect(int k, int vector, int metric){
-		
+		while(clusters.size()!=k){
+			int index = -1;
+			int max = 0;
+			for(int i=0;i<clusters.size();i++){
+				if(clusters.get(i).items.size()>max){
+					max = clusters.get(i).items.size();
+					index = i;
+				}
+			}
+			if(index>=0)
+				this.kmean(2, vector, metric, clusters.get(index));
+		}
 	}
 	
 	//execute one step of kmean
 	@Override
 	public void step(int k, int vector, int metric) {
 		// TODO Auto-generated method stub
-		
+		if(clusters.size()<k){
+			int index = -1;
+			int max = 0;
+			for(int i=0;i<clusters.size();i++){
+				if(clusters.get(i).items.size()>max){
+					max = clusters.get(i).items.size();
+					index = i;
+				}
+			}
+			if(index>=0)
+				this.kmean(2, vector, metric, clusters.get(index));
+		}
+			
 	}
 
 
@@ -91,7 +101,8 @@ public class Kmean implements Modell {
 	@Override
 	public void run(int k, int vector, int metric) {
 		// TODO Auto-generated method stub
-		this.kmean(k, vector, metric, clusters.get(0));
+		//this.kmean(k, vector, metric, clusters.get(0));
+		this.bisect(k, vector, metric);
 	}
 
 	public int getClustertoItem( Item i, int metric, ArrayList<Cluster> clusters)
@@ -191,20 +202,10 @@ public class Kmean implements Modell {
 				}
 				br.close();		
 					
-			} /*catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}*/ catch (Exception e) {
+			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
 			}finally {
-			
-				for(double i : minmax)
-					System.out.println(i);
+
 			}
 		return true;
 	}

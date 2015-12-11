@@ -6,8 +6,6 @@ package mi;
  */
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -37,6 +35,7 @@ public class Frame extends javax.swing.JFrame {
 	//Modell (Kmean)
 	private Modell modell;
 	private String log;
+	private int step;
 	
 	//log new line
 	public void log(String l){
@@ -49,6 +48,7 @@ public class Frame extends javax.swing.JFrame {
     	this.setTitle("MI: Bisect K-Mean clustering");
     	
     	log = "";
+    	step = 0;
     	setModell(new Kmean());
         initComponents();
     }
@@ -135,6 +135,7 @@ public class Frame extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				step = 0;
 				modell.getList().clear();
 				if(modell.loadFile(jTextField1.getText())){
 					log("Opening File succesful");
@@ -166,13 +167,17 @@ public class Frame extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				if(modell.loadFile(jTextField1.getText())){
-					log("Opening File succesful");
-				} else {
-					log("Opening File failed ");
-					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+				if(step == 0){
+					modell.getList().clear();
+					
+					if(modell.loadFile(jTextField1.getText())){
+						log("Opening File succesful");
+					} else {
+						log("Opening File failed ");
+						JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+				} step++;
 				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
