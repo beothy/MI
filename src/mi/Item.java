@@ -124,7 +124,7 @@ public class Item {
 		int max = c.size();
 		int min = 1;
 		int R = (int)Math.random()*max + min;
-		RandCentfromData = c.get(R);
+		RandCentfromData = c.get(0).items.get(R);
 		return RandCentfromData;
 	}
 	

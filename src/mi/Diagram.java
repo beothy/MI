@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 
 public class Diagram extends View{
@@ -14,6 +15,11 @@ public class Diagram extends View{
 	private static final long serialVersionUID = 8359661270430825821L;
 	private volatile boolean init = true;
 	private volatile boolean draw = false;
+	private int numOfCL;
+	
+	Diagram() {
+		numOfCL=1;
+	}
 	
 	 @Override
 	   public void paintComponent(Graphics g) {
@@ -47,6 +53,19 @@ public class Diagram extends View{
 		 g2d.drawString("Perimeter", 400, 535);
 		 g2d.drawString("ShapeFactor", 500, 535);
 		 g2d.drawString("AreaLoadFactor", 600, 535);
+		 
+		 for(int i = 0; i < 360; i += 360/numOfCL) {
+			   
+			    float hue = i/360f;
+			    float saturation = 1.0f;
+			    float brightness = 1.0f;
+			    Color c = Color.getHSBColor(hue,saturation,brightness);
+
+			    g2d.setPaint(c);
+			    g2d.fill(new Rectangle2D.Double((i/(360/(double)numOfCL))*30, 550, 30, 10));
+			    System.out.println(hue);
+		}
+		
 	 }
 	 
 	 public void init() {
@@ -54,8 +73,9 @@ public class Diagram extends View{
 		 this.repaint();
 	 }
 	 
-	 public void draw() {
+	 public void draw(int k) {
 		 draw = true;
+		 numOfCL = k;
 		 this.repaint();
 	 }
 	 

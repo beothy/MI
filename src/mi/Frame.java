@@ -146,7 +146,7 @@ public class Frame extends javax.swing.JFrame {
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
-				view.draw();
+				view.draw(k);
 				//algoritmus lefuttatása
 				modell.run(k, vector, metric);
 			}
