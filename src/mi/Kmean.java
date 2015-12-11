@@ -49,9 +49,9 @@ public class Kmean implements Modell {
 		double dist = 0;
 		for(int j = 0; j < clusters.get(0).items.size(); j++)
 		{
-			if(metric == 0)
-				dist = i.cos_distance(i, clusters.get(j).getCentroid());
 			if(metric == 1)
+				dist = i.cos_distance(i, clusters.get(j).getCentroid());
+			if(metric == 0)
 				dist = i.euklid_distance(i, clusters.get(j).getCentroid());
 			if(dist < minDist)	
 			{
