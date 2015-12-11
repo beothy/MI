@@ -135,6 +135,7 @@ public class Frame extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				modell.getList().clear();
 				if(modell.loadFile(jTextField1.getText())){
 					log("Opening File succesful");
 				} else {
@@ -148,12 +149,12 @@ public class Frame extends javax.swing.JFrame {
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
 				//algoritmus lefuttatása
 				//view.draw(k, modell.getList(), modell.getminmax());
-				log(Integer.toString(modell.getList().get(0).items.size())+"\n");
+				log("\nNumber of Data: "+Integer.toString(modell.getList().get(0).items.size())+"\n");
 				modell.run(k, vector, metric);
 				view.draw(k, modell.getList(), modell.getminmax());
-				log(Integer.toString(modell.getList().size())+"\n");
-				for(Cluster c : modell.getList())
-					log(Integer.toString(c.items.size()));
+				log("Clusters:");
+				for(int i=0;i<modell.getList().size();i++)
+					log("  "+(i+1)+".:\t"+Integer.toString(modell.getList().get(i).items.size()));
 			}
         	
         });
@@ -172,12 +173,18 @@ public class Frame extends javax.swing.JFrame {
 					JOptionPane.showMessageDialog(null, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				int k = (Integer) jSpinner2.getValue();
+				int k = (Integer) jSpinner2.getValue();	
 				int vector = jComboBox1.getSelectedIndex();
 				int metric = jComboBox2.getSelectedIndex();
 				log("\nParameter of Algorithm\n  Number of Clusters:\n\t"+k+"\n  Initial Vector:\t"+jComboBox1.getSelectedItem().toString()+"\n  Metric:\t"+jComboBox2.getSelectedItem().toString());
-				
+				//algoritmus lefuttatása
+				//view.draw(k, modell.getList(), modell.getminmax());
+				log("\nNumber of Data: "+Integer.toString(modell.getList().get(0).items.size())+"\n");
 				modell.step(k, vector, metric);
+				view.draw(k, modell.getList(), modell.getminmax());
+				log("Clusters:");
+				for(int i=0;i<modell.getList().size();i++)
+					log("  "+(i+1)+".:\t"+Integer.toString(modell.getList().get(i).items.size()));
 			}
         	
         });
@@ -206,8 +213,8 @@ public class Frame extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -228,7 +235,7 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

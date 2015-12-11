@@ -224,5 +224,10 @@ public class Kmean implements Modell {
 		// TODO Auto-generated method stub
 		return minmax;
 	}
+	@Override
+	public void setList(ArrayList<Cluster> c) {
+		// TODO Auto-generated method stub
+		clusters = c;
+	}
 
 }

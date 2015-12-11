@@ -21,7 +21,7 @@ public class Diagram extends View{
 	private ArrayList<Double> minmax;
 	
 	Diagram() {
-		numOfCL=1;
+		numOfCL=0;
 		clusters = null;
 		minmax = null;
 	}
@@ -79,16 +79,18 @@ public class Diagram extends View{
 		 g2d.drawString("ShapeFactor", 478, 535);
 		 g2d.drawString("AreaLoadFactor", 570, 535);
 		 
-		 for(int i = 0; i < 360; i += 360/numOfCL) {
-			   
-			    float hue = i/360f;
-			    float saturation = 1.0f;
-			    float brightness = 1.0f;
-			    Color c = Color.getHSBColor(hue,saturation,brightness);
-
-			    g2d.setPaint(c);
-			    g2d.fill(new Rectangle2D.Double((i/(360/(double)numOfCL))*30, 550, 30, 10));
-		}
+		 if(numOfCL>1)
+			 for(int i = 0; i < 360; i += 360/numOfCL) {
+				   
+				    float hue = i/360f;
+				    float saturation = 1.0f;
+				    float brightness = 1.0f;
+				    Color c = Color.getHSBColor(hue,saturation,brightness);
+	
+				    g2d.setPaint(c);
+				    g2d.fill(new Rectangle2D.Double(115+(i/(360/(double)numOfCL))*30, 550, 30, 10));
+				    g2d.drawString(Integer.toString(i/(360/numOfCL)+1)+'.', (int)(115+10+(i/(360/numOfCL))*30), 575);
+			}
 		
 	 }
 	 
