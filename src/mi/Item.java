@@ -90,7 +90,7 @@ public class Item {
 		this.areaLoadFactor = areaLoadFactor;
 	}
 	
-	protected double euklid_distance(Item i, Item centroid)
+	public double euklid_distance(Item i, Item centroid)
 	{
 		return Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
 				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
@@ -100,7 +100,7 @@ public class Item {
 				+Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2));
 	}
 	
-	protected double cos_distance(Item i, Item centroid)
+	public double cos_distance(Item i, Item centroid)
 	{
 		return (i.getArea()*centroid.getArea()
 				+ i.getHeight()*centroid.getHeight()
@@ -116,32 +116,6 @@ public class Item {
 				+ Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2)));
 	}
 	
-	protected static Item createRandCentroid(double wMin, double wMax, double hMin, double hMax, double aMin, double aMax, double pMin, double pMax, double sfMin, double sfMax, double alfMin, double alfMax)
-	{
-		Item RandomCentroid = new Item();
-		double wR = Math.random()*wMax + wMin;
-		double hR = Math.random()*hMax + hMin;
-		double aR = Math.random()*aMax + aMin;
-		double pR = Math.random()*pMax + pMin;
-		double sfR = Math.random()*sfMax + sfMin;
-		double alfR = Math.random()*alfMax + alfMin;
-		RandomCentroid.setWidth(wR);
-		RandomCentroid.setHeight(hR);
-		RandomCentroid.setArea(aR);
-		RandomCentroid.setPerimeter(pR);
-		RandomCentroid.setShapeFactor(sfR);
-		RandomCentroid.setAreaLoadFactor(alfR);
-		return RandomCentroid;
-	}
 	
-	protected static Item createRandCentfromData(ArrayList<Cluster> c)
-	{
-		Item RandCentfromData = new Item();
-		int max = c.size();
-		int min = 1;
-		int R = (int)Math.random()*max + min;
-		RandCentfromData = c.get(0).items.get(R);
-		return RandCentfromData;
-	}
 	
 }
