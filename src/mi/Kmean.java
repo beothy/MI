@@ -12,7 +12,7 @@ public class Kmean implements Modell {
 	public ArrayList<Double> minmax = new ArrayList<Double>();
 
 	//standard k-mean algorithm
-	public void kmean(int k, int vector, int metric) 
+	public void kmean(int k, int vector, int metric, Cluster c) 
 	{
 		//Mivel a kis számláló bigyó csak 1tõl enged, lehetne, hogy 1-nél nem csinál semmit, mert mr úgyis 1 klaszter van
 		if(k<1)
@@ -20,10 +20,24 @@ public class Kmean implements Modell {
 		else if(k==1)
 			return;
 		
-		
+		clusters.remove(c);
 		ArrayList<Cluster> newClusters = new ArrayList<Cluster>();
+		newClusters.add(c);
 		for(int i = 0;i<k-1;i++){
+			Cluster tmp = new Cluster();
 			
+			switch(vector){
+			case 0:
+				tmp.setCentroid(c.createRandCentroid(minmax));
+				c.setCentroid(c.createRandCentroid(minmax));
+				break;
+			case 1:
+				tmp.setCentroid(c.createRandCentfromData(c));
+				c.setCentroid(c.createRandCentfromData(c));
+				break;
+			}
+			
+			newClusters.add(tmp);
 		}
 		
 		/*while()

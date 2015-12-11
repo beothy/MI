@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Cluster {
 	public ArrayList<Item> items = new ArrayList<Item>(); 
 	public Item centroid;
+	public Item lastCentroid;
 	
 	public void Claster()
 	{
 		this.items = new ArrayList<Item>();
 		this.centroid = null;
+		this.lastCentroid = null;
 	}
 	
 	//Ez fog uj centroidot szamolni
@@ -54,10 +56,11 @@ public class Cluster {
 	
 	public void setCentroid(Item c)
 	{
+		lastCentroid = centroid;
 		this.centroid = c;
 	}
 	
-	public static Item createRandCentroid(ArrayList<Double> minmax){ //atirva hogy tombot kapjon
+	public Item createRandCentroid(ArrayList<Double> minmax){ //atirva hogy tombot kapjon
 		double wMin = minmax.get(0);
 		double wMax = minmax.get(1);
 		double hMin = minmax.get(2);
@@ -86,7 +89,7 @@ public class Cluster {
 		return RandomCentroid;
 	}
 	
-	public static Item createRandCentfromData(Cluster c) //konretan egy klasztert kap
+	public Item createRandCentfromData(Cluster c) //konretan egy klasztert kap
 	{
 		Item RandCentfromData = new Item();
 		int max = c.items.size(); //az itemek saáma az erdekes
