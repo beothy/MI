@@ -13,8 +13,38 @@ public class Cluster {
 	}
 	
 	//Ez fog uj centroidot szamolni
-	public void calcNewCentroid(){
+	public Item calcNewCentroid(){
+		Item centr = new Item();
+		double w = 0;
+		double h = 0;
+		double a = 0;
+		double p = 0;
+		double sf = 0;
+		double alf = 0;
 		
+		for(int i = 0; i<items.size();i++){
+			w+=items.get(i).getWidth();
+			h+=items.get(i).getHeight();
+			a+=items.get(i).getArea();
+			p+=items.get(i).getPerimeter();
+			sf+=items.get(i).getShapeFactor();
+			alf+=items.get(i).getAreaLoadFactor();
+		}
+		w/=items.size();
+		h/=items.size();
+		a/=items.size();
+		p/=items.size();
+		sf/=items.size();
+		alf/=items.size();
+		
+		centr.setWidth(w);
+		centr.setHeight(h);
+		centr.setArea(a);
+		centr.setPerimeter(p);
+		centr.setShapeFactor(sf);
+		centr.setAreaLoadFactor(alf);
+		
+		return centr;
 	}
 	
 	public Item getCentroid()
