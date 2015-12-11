@@ -87,4 +87,14 @@ public class Item {
 	public void setAreaLoadFactor(double areaLoadFactor) {
 		this.areaLoadFactor = areaLoadFactor;
 	}
+	
+	protected static double distance(Item i, Item centroid)
+	{
+		return Math.sqrt(Math.pow((i.getWidth()-centroid.getWidth()),2) 
+				+ Math.pow(i.getHeight()-centroid.getHeight(),2)
+				+ Math.pow(i.getArea()-centroid.getArea(),2)
+				+ Math.pow(i.getPerimeter()-centroid.getPerimeter(), 2)
+				+Math.pow(i.getShapeFactor()-centroid.getShapeFactor(), 2)
+				+Math.pow(i.getAreaLoadFactor()-centroid.getAreaLoadFactor(), 2));
+	}
 }

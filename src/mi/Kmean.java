@@ -11,8 +11,10 @@ public class Kmean implements Modell {
 	public ArrayList<Cluster> clusters = new ArrayList<Cluster>(); 
 
 	//standard k-mean algorithm
-	public void kmean(int k, int vector, int metric) {
-		// TODO Auto-generated method stub
+	public void kmean(int k, int vector, int metric) 
+	{
+		int clust_num = k;
+		
 
 	}
 	//bisect kmean algorithm
