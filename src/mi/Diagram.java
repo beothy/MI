@@ -43,10 +43,12 @@ public class Diagram extends View{
 		 Graphics2D g2d = (Graphics2D) g.create();
 		 
 		 for(int i=0;i<clusters.size();i++){
-			 	float hue = i/clusters.size();
+			 	float hue = i/(float)clusters.size();
+			 	System.out.println(hue);
 			    float saturation = 1.0f;
 			    float brightness = 1.0f;
 			    Color c = Color.getHSBColor(hue,saturation,brightness);
+			    System.out.println(c.toString());
 			    g2d.setPaint(c);
 			    
 			   for(int j = 0; j< clusters.get(i).items.size();j++){

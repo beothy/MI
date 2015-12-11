@@ -63,7 +63,7 @@ public class Kmean implements Modell {
 					dist = newClusters.get(l).centroid.cos_distance(newClusters.get(l).centroid, newClusters.get(l).lastCentroid);
 					break;
 				}
-				if(dist == 0)
+				if(dist < 10)
 					finish = true;
 				else
 					finish = false;
