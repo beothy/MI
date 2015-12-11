@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class Kmean implements Modell {
 	//Array of clusters
-	public ArrayList<Cluster> clusters = new ArrayList<Cluster>(); 
+	public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
+	public ArrayList<Double> minmax = new ArrayList<Double>();
 
 	//standard k-mean algorithm
 	public void kmean(int k, int vector, int metric) 
@@ -46,10 +47,36 @@ public class Kmean implements Modell {
 				String line = br.readLine();
 				line = br.readLine();
 				
+				String[] params = line.split("\t");
+				
+				Item item = new Item();
+				item.setWidth(Double.parseDouble(params[1]));
+				minmax.add(item.getWidth());
+				minmax.add(item.getWidth());
+				item.setHeight(Double.parseDouble(params[2]));
+				minmax.add(item.getHeight());
+				minmax.add(item.getHeight());
+				item.setArea(Double.parseDouble(params[3]));
+				minmax.add(item.getArea());
+				minmax.add(item.getArea());
+				item.setPerimeter(Double.parseDouble(params[4]));
+				minmax.add(item.getPerimeter());
+				minmax.add(item.getPerimeter());
+				item.setShapeFactor(Double.parseDouble(params[5]));
+				minmax.add(item.getShapeFactor());
+				minmax.add(item.getShapeFactor());
+				item.setAreaLoadFactor(Double.parseDouble(params[6]));
+				minmax.add(item.getAreaLoadFactor());
+				minmax.add(item.getAreaLoadFactor());
+				
+				clusters.get(0).items.add(item);
+				
+				line = br.readLine();
+				
 				while(line != null){
-					String[] params = line.split("\t");
+					params = line.split("\t");
 					
-					Item item = new Item();
+					item = new Item();
 					item.setWidth(Double.parseDouble(params[1]));
 					item.setHeight(Double.parseDouble(params[2]));
 					item.setArea(Double.parseDouble(params[3]));

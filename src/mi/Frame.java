@@ -46,7 +46,7 @@ public class Frame extends javax.swing.JFrame {
 	
     public Frame() {
     	this.setPreferredSize(new Dimension(1000,650));
-    	this.setTitle("MI: K-Mean clustering");
+    	this.setTitle("MI: Bisect K-Mean clustering");
     	
     	log = "";
     	setModell(new Kmean());
@@ -115,7 +115,7 @@ public class Frame extends javax.swing.JFrame {
         
         });
 
-        jLabel2.setText("Number of Calsters");
+        jLabel2.setText("Number of Clusters");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "random", "random from db"}));
         jComboBox1.setPreferredSize(new Dimension(100,28));
