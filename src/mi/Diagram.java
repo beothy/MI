@@ -29,12 +29,14 @@ public class Diagram extends View{
 	 
 	 public void draw(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g.create();
-		 setBackground(Color.BLACK);
+		 	
 	 }
 	 
 	 public void init(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g.create();
-		 setBackground(Color.WHITE);
+		 
+		 for(int i = 0; i<7;i++)
+			 g2d.drawRect(15+i*100, 15, 100, 500);
 	 }
 	 
 	 public void init() {
