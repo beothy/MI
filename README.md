@@ -5,4 +5,4 @@ It was a homework for the subject Artificial Intelligence.
 
 Contributors: Gerendai Zsuzsa & Beöthy Bence
 
-Informatic Engineer students of Budapest University of Technology and ECOconomics
+Informatic Engineer students of Budapest University of Technology and Economics
