@@ -4,5 +4,4 @@ This program implements a Bisect Kmean algorithm, and can clustering geometric s
 It was a homework for the subject Artificial Intelligence.
 
 Contributors: Gerendai Zsuzsa & Beöthy Bence
-
-informatic engineer students of BUDAPEST UNIVERSITY OF TECHNOLOGY AND ECONOMICS
+Informatic Engineer students of Budapest University of Technology and ECOconomics
